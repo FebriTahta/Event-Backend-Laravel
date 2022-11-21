@@ -18,10 +18,16 @@ class News extends Model
         'news_image',
         'news_thumb',
         'news_stat',
+        'tag_id',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
     }
 }

@@ -53,7 +53,8 @@ class EventController extends Controller
     {
         $kategori = Kategori::all();
         $random   = Str::random(5);
-        return view('page.event_create',compact('kategori','random'));
+        $kategori_count = Kategori::count();
+        return view('page.event_create',compact('kategori','random','kategori_count'));
     }
 
 

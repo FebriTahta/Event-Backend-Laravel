@@ -7,6 +7,7 @@ use DataTables;
 use Illuminate\Support\Str;
 use Image;
 use Validator;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -61,7 +62,9 @@ class BlogController extends Controller
     {
         $penulis = User::get();
         $random   = Str::random(5);
-        return view('page.blog_create',compact('penulis','random'));
+        $tag_count = Tag::count();
+        $tag = Tag::get();
+        return view('page.blog_create',compact('penulis','random','tag_count','tag'));
     }
 
     public function createThumbnail($path, $width, $height)
@@ -83,6 +86,7 @@ class BlogController extends Controller
                 'news_url'      => 'required|',
                 'news_desc'     => 'required|',
                 'news_stat'     => 'required|',
+                'tag_id'        => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -169,6 +173,7 @@ class BlogController extends Controller
                             'news_image'    =>$filename,
                             'news_thumb'    =>$filename3,
                             'news_slug'     =>$news_slug_new,
+                            'tag_id'        =>$request->tag_id,
                         ]
                     );
 
@@ -226,6 +231,7 @@ class BlogController extends Controller
                             'news_desc'     =>$request->news_desc,
                             'news_url'      =>$news_url_new,
                             'news_slug'     =>$news_slug_new,
+                            'tag_id'        =>$request->tag_id,
                         ]
                     );
                 }

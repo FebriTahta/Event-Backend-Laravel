@@ -3,27 +3,19 @@
 namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Kategori;
+use App\Models\News;
 use App\Helpers\ApiFormatter;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+    // event
     public function daftar_event()
     {
-        $data = Event::with('kategori')->get();
-
-        if($data)
-        {
-            return ApiFormatter::createApi(200, 'success' ,$data);
-        }else {
-            return ApiFormatter::createApi(400, 'failed');
-        }
-    }
-
-    public function daftar_kategori()
-    {
-        $data = Kategori::whereHas('event')->get();
-        
+        $data = Event::where('event_stat', 2)
+                      ->orderBy('created_at', 'desc')
+                      ->with('kategori')
+                      ->paginate(9);
         if($data)
         {
             return ApiFormatter::createApi(200, 'success' ,$data);
@@ -51,6 +43,22 @@ class ApiController extends Controller
         }
     }
 
+
+    // kategori
+    public function daftar_kategori()
+    {
+        $data = Kategori::whereHas('event')->get();
+        
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
+    
+
     public function search_kategori($kategori_slug)
     {
         $data = Event::whereHas('kategori', 
@@ -74,4 +82,35 @@ class ApiController extends Controller
     }
 
 
+    // blog
+    public function daftar_blog()
+    {
+        $data = News::where('news_stat', 2)
+                    ->join('users', 'news.user_id', 'users.id')
+                    ->select('news_title','news_url','news_slug','news_thumb','news_image',
+                             'news_desc','users.username')
+                    ->paginate(10);
+
+
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+        
+    }
+
+    public function recent_blog_home()
+    {
+        $data = News::orderBy('created_at', 'desc')
+                    ->limit(6)
+                    ->get();
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
 }
