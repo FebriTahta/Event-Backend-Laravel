@@ -25,9 +25,9 @@
                                 <i class="icon icon-home2"></i>Today</a>
                         </li>
                     </ul>
-                    <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
+                    {{-- <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
                         <i class="icon icon-menu"></i>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </header>
@@ -35,66 +35,88 @@
             <div class="tab-content pb-3" id="v-pills-tabContent">
                 <!--Today Tab Start-->
                 <div class="tab-pane animated fadeInUpShort show active" id="v-pills-1">
-                    <form id="formadd" enctype="multipart/form-data">@csrf
-                        <div class="white" style="margin-top: 20px">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>Judul Blog</label>
-                                            <input type="text" name="news_title" class="form-control text-capitalize"
-                                                placeholder="Tips & Trick Menggait Partisipan Lomba" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>Penulis Blog</label>
-                                            <select name="user_id" class="form-control" id="">
-                                                <option value="{{ auth()->user()->id }}">{{ auth()->user()->username }}
-                                                </option>
-                                                @foreach ($penulis as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->username }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
 
-                                        <div class="col-md-12 mb-3">
-                                            <label>Tulis Deskripsi Blog</label>
-                                            <textarea name="news_desc" id="summernote" class="form-control" cols="30" rows="3"></textarea>
-                                        </div>
+                    @if ($tag_count < 1)
+                        <div class="card" style="margin-top: 50px; background-color: rgb(252, 184, 184)">
+                            <div class="alert" style="text-align: center">
+                                <p style="color: white">Tag Kategori Blog Kosong, Silahkan tambahkan tag kategori blog
+                                    terlebih dahulu</p>
+                            </div>
+                        </div>
+                    @else
+                        <form id="formadd" enctype="multipart/form-data">@csrf
+                            <div class="white" style="margin-top: 20px">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label>Judul Blog</label>
+                                                <input type="text" name="news_title" class="form-control text-capitalize"
+                                                    placeholder="Tips & Trick Menggait Partisipan Lomba" required>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Penulis Blog</label>
+                                                <select name="user_id" class="form-control" id="">
+                                                    <option value="{{ auth()->user()->id }}">{{ auth()->user()->username }}
+                                                    </option>
+                                                    @foreach ($penulis as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->username }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
-                                        <div class="col-md-6 mb-3">
-                                            <label>Status </label>
-                                            <select name="news_stat" class="form-control" id="">
-                                                <option value="2">Tayang</option>
-                                                <option value="1">Pending</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>Url Event Share </label>
-                                            <input type="text" class="form-control" name="news_url"
-                                                placeholder="https://infolombaofficial.com/{{ $random }}"
-                                                value="{{ $random }}">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>Upload Poster</label>
-                                            <div class="custom-file">
-                                                <input type="file" name="news_image" class="custom-file-input"
-                                                    id="inputGroupFile01" accept="image/*" onchange="showPreview(event);">
-                                                <p class="custom-file-label" id="label_img" for="inputGroupFile01">Chose
-                                                    Image</p>
+                                            <div class="col-md-12 mb-3">
+                                                <label>Tulis Deskripsi Blog</label>
+                                                <textarea name="news_desc" id="summernote" class="form-control" cols="30" rows="3"></textarea>
                                             </div>
-                                            <div class="preview" style="max-width: 100%; margin-top: 20px">
-                                                <img style="max-width: 300px" id="inputGroupFile01-preview" src="">
+
+                                            <div class="col-md-6 mb-3">
+                                                <label>Status </label>
+                                                <select name="news_stat" class="form-control" id="">
+                                                    <option value="2">Tayang</option>
+                                                    <option value="1">Pending</option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 md-3">
-                                            <input type="submit" class="btn btn-sm btn-primary" id="btnadd"
-                                                value="SUBMIT">
+
+                                            <div class="col-md-6 mb-3">
+                                                <label>Tag / Kategori Blog </label>
+                                                <select name="tag_id" class="form-control" id="" required>
+                                                    @foreach ($tag as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->tag_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Url Event Share </label>
+                                                <input type="text" class="form-control" name="news_url"
+                                                    placeholder="https://infolombaofficial.com/{{ $random }}"
+                                                    value="{{ $random }}">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Upload Poster</label>
+                                                <div class="custom-file">
+                                                    <input type="file" name="news_image" class="custom-file-input"
+                                                        id="inputGroupFile01" accept="image/*"
+                                                        onchange="showPreview(event);">
+                                                    <p class="custom-file-label" id="label_img" for="inputGroupFile01">Chose
+                                                        Image</p>
+                                                </div>
+                                                <div class="preview" style="max-width: 100%; margin-top: 20px">
+                                                    <img style="max-width: 300px" id="inputGroupFile01-preview"
+                                                        src="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 md-3">
+                                                <input type="submit" class="btn btn-sm btn-primary" id="btnadd"
+                                                    value="SUBMIT">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    @endif
+
                 </div>
                 <!--Today Tab End-->
             </div>

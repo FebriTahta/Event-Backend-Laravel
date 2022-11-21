@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
             $table->string('news_title')->nullable();
             $table->longtext('news_slug')->nullable();
             $table->string('news_url')->nullable();

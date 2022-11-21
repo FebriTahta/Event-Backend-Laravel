@@ -18,8 +18,11 @@ use App\Http\Controllers\ApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+ 
 Route::get('daftar-event-api',[ApiController::class,'daftar_event']);
 Route::get('daftar-kategori-api',[ApiController::class,'daftar_kategori']);
 Route::get('search-kategori-api/{kategori_slug}',[ApiController::class,'search_kategori']);
 Route::get('search-event/{search}', [ApiController::class,'search_event']);
+
+
+Route::get('/daftar-blog-api', [ApiController::class,'daftar_blog']);

@@ -25,15 +25,23 @@
                             <i class="icon icon-home2"></i>Today</a>
                     </li>
                 </ul>
-                <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
+                {{-- <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
                     <i class="icon icon-menu"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </header>
     <div class="container-fluid relative animatedParent animateOnce">
         <div class="tab-content pb-3" id="v-pills-tabContent">
             <!--Today Tab Start-->
+            @if ($kategori_count < 1)
+            <div class="card" style="margin-top: 50px; background-color: rgb(252, 184, 184)">
+                <div class="alert" style="text-align: center">
+                    <p style="color: white">Tag Kategori Lomba Kosong, Silahkan tambahkan tag kategori Lomba
+                        terlebih dahulu</p>
+                </div>
+            </div>
+            @else
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-1">
                 <form id="formadd" enctype="multipart/form-data">@csrf
                     <div class="white" style="margin-top: 20px">
@@ -117,6 +125,11 @@
                     </div>
                 </form>
             </div>
+            @endif
+            
+
+
+            
             <!--Today Tab End-->
         </div>
     </div>

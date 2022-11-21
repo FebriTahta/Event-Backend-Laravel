@@ -19,9 +19,9 @@
                             <i class="icon icon-home2"></i>Today</a>
                     </li>
                 </ul>
-                <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
+                {{-- <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
                     <i class="icon icon-menu"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </header>
@@ -102,7 +102,7 @@
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">TAMBA KATEGORI BARU</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">UPDATE KATEGORI</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

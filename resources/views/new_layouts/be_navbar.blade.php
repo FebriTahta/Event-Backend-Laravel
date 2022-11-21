@@ -25,13 +25,13 @@
         </li>
         
         <!-- Right Sidebar Toggle Button -->
-        <li>
+        {{-- <li>
             <a class="nav-link ml-2" data-toggle="control-sidebar">
                 <i class="icon-tasks "></i>
             </a>
-        </li>
+        </li> --}}
         <!-- User Account-->
-        <li class="dropdown custom-dropdown user user-menu ">
+        {{-- <li class="dropdown custom-dropdown user user-menu ">
             <a href="#" class="nav-link" data-toggle="dropdown">
                 <img src="{{asset('assets/assets/img/dummy/u8.png')}}" class="user-image" alt="User Image">
                 <i class="icon-more_vert "></i>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-        </li>
+        </li> --}}
     </ul>
 </div>
         </div>

@@ -120,8 +120,8 @@
     <div id="app">
         <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
             <section class="sidebar">
-                <div class="w-80px mt-3 mb-3 ml-3">
-                    <img src="{{ asset('logo-crop.png') }}" alt="">
+                <div class="w-150px mt-3 mb-3 ml-3">
+                    <img src="{{ asset('logo1.png') }}" alt="">
                 </div>
                 <div class="relative">
                     <a data-toggle="collapse" href="#userSettingsCollapse" role="button" aria-expanded="false"
@@ -136,13 +136,15 @@
                                     alt="User Image">
                             </div>
                             <div class="float-left info">
-                                <h6 class="font-weight-light mt-2 mb-1 text-capitalize">{{ auth()->user()->username }}</h6>
-                                <a href="#" class="text-capitalize"><i class="icon-circle text-primary blink "></i> {{ auth()->user()->role }}</a>
+                                <h6 class="font-weight-light mt-2 mb-1 text-capitalize">{{ auth()->user()->username }}
+                                </h6>
+                                <a href="#" class="text-capitalize"><i
+                                        class="icon-circle text-primary blink "></i> {{ auth()->user()->role }}</a>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="collapse multi-collapse" id="userSettingsCollapse">
-                            <div class="list-group mt-3 shadow">            
+                            <div class="list-group mt-3 shadow">
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     class="list-group-item list-group-item-action"><i
@@ -157,22 +159,13 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="header"><strong>NAVIGATION</strong></li>
-                    <li class="treeview"><a href="#">
+                    <li class="treeview"><a href="/backend-dashboard">
                             <i class="icon icon icon-package blue-text s-18"></i>
                             <span>Dashboard</span>
                             {{-- <span class="badge r-3 badge-primary pull-right">4</span> --}}
                         </a>
                     </li>
-                    <li class="treeview"><a href="#"><i
-                                class="icon icon-account_box light-green-text s-18"></i>Users<i
-                                class="icon icon-angle-left s-18 pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="/backend-user"><i class="icon icon-circle-o"></i>All Users</a>
-                            </li>
-                            <li><a href="/backend-create-user"><i class="icon icon-add"></i>Add User</a>
-                            </li>
-                        </ul>
-                    </li>
+
 
                     <li class="header light mt-3"><strong>COMPONENTS</strong></li>
 
@@ -192,11 +185,6 @@
                         </ul>
                     </li>
 
-                    
-
-
-
-                    <li class="header light mt-3"><strong>BLOG</strong></li>
                     <li class="treeview ">
                         <a href="#">
                             <i class="icon icon icon-newspaper blue-text s-18 "></i> <span>&nbsp;Manajemen Blog</span>
@@ -206,11 +194,42 @@
 
                             <li><a href="/backend-blog"><i class="icon icon-folders2 blue-text"></i>Daftar Blog</a>
                             </li>
-                            <li><a href="/backend-blog-create"><i class="icon icon-plus blue-text"></i>Add New Blog</a>
+                            <li><a href="/backend-tag"><i class="icon icon-folders2 blue-text"></i>Daftar Kategori
+                                    Blog</a>
+                            </li>
+                            <li><a href="/backend-blog-create"><i class="icon icon-plus blue-text"></i>Add New
+                                    Blog</a>
                             </li>
                         </ul>
                     </li>
 
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="icon icon icon-group purple-text s-18 "></i> <span>&nbsp;Manajemen Partner</span>
+                            <i class="icon icon-angle-left s-18 pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li><a href="/backend-partner"><i class="icon icon-group purple-text"></i>Daftar Partner</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    <li class="header light mt-3"><strong>ACCOUNT</strong></li>
+
+                    <li class="treeview"><a href="#"><i
+                                class="icon icon-account_box light-green-text s-18"></i>Users<i
+                                class="icon icon-angle-left s-18 pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="/backend-user"><i class="icon icon-circle-o"></i>All Users</a>
+                            </li>
+                            <li><a href="/backend-create-user"><i class="icon icon-add"></i>Add User</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
         </aside>

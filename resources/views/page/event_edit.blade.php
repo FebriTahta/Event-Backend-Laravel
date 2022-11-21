@@ -25,9 +25,9 @@
                                 <i class="icon icon-home2"></i>Today</a>
                         </li>
                     </ul>
-                    <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
+                    {{-- <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
                         <i class="icon icon-menu"></i>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </header>

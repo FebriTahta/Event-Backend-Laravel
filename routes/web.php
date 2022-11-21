@@ -5,6 +5,9 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
         Route::post('/backend-kategori-delete','backend_kategori_delete');
     });
 
+    // Kategori Blog / Tag
+    route::controller(TagController::class)->group(function(){
+        Route::get('/backend-tag', 'backend_tag');
+        Route::post('/backend-tag-store', 'backend_tag_store');
+        Route::post('/backend-tag-delete', 'backend_tag_delete');
+    });
+
     // Event
     Route::controller(EventController::class)->group(function(){
         Route::get('/backend-event','backend_event');
@@ -59,5 +69,16 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
         Route::post('/backend-store-user','backend_store_user');
         Route::post('/backend-remove-user','backend_remove_user');
     });
+
+    // Partner
+    Route::controller(PartnerController::class)->group(function(){
+        Route::get('/backend-partner', 'backend_partner');
+        Route::post('/backend-partner-store', 'backend_partner_store');
+        Route::post('/backend-partner-delete', 'backend_partner_delete');
+        Route::post('/backend-partner-update', 'backend_partner_update');
+    });
      
+    Route::controller(DashboardController::class)->group(function(){
+        Route::get('/backend-dashboard', 'backend_dashboard');
+    });
 });

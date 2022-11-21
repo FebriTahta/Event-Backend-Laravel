@@ -29,6 +29,7 @@ return new class extends Migration
             $table->longText('event_desc')->nullable();
             $table->string('event_key')->nullable();
             $table->string('event_stat')->nullable();
+            $table->string('event_view')->nullable();
             $table->timestamps();
         });
     }

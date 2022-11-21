@@ -8,7 +8,7 @@
                 <div class="col">
                     <h4>
                         <i class="icon-box"></i>
-                        Blog <p id="gets"></p>
+                        Tag
                     </h4>
                 </div>
             </div>
@@ -30,31 +30,36 @@
             <!--Today Tab Start-->
             <div class="tab-pane animated fadeInUpShort show active" id="v-pills-1">
                 <div class="row my-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="counter-box white r-5 p-3">
                             <div class="p-4">
                                 <div class="float-right">
-                                    <span class="icon icon-newspaper text-light-blue s-48"></span>
+                                    <span class="icon icon-note-list text-light-blue s-48"></span>
                                 </div>
-                                <div class="counter-title">Daftar Blog</div>
-                                <h5 class="sc-counter mt-3">{{ $total_blog }}</h5>
+                                <div class="counter-title">Tag</div>
+                                <h5 class="sc-counter mt-3" id="total_kategori">{{ $total }}</h5>
+                            </div>
+                            <div class="progress progress-xs r-0">
+                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                    aria-valuemin="0" aria-valuemax="128"></div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 
                 <div class="white">
                     <div class="card-body">
+                        <div class="card-title" style="margin-left: 15px">
+                            <button data-toggle="modal" data-target="#modaladd" class="btn btn-success btn-sm">Tambah Tag</button>
+                        </div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
                                         <th style="width: 10%">No</th>
-                                        <th>Image</th>
-                                        <th>Judul</th>
-                                        <th>Url</th>
-                                        <th>Views</th>
-                                        <th>Status</th>
+                                        <th>Kategori</th>
+                                        <th>Total Blog</th>
                                         <th style="width: 15%">Opsi</th>
                                     </tr>
                                 </thead>
@@ -71,22 +76,21 @@
     </div>
 </div>
 
-<div class="modal fade bs-example-modal-xl-2" id="modaldel" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-xl-2" id="modaladd" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">HAPUS BLOG</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">TAMBAH KATEGORI BARU</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formdel">@csrf
+            <form id="formadd">@csrf
                 <div class="modal-body">
-                    <input type="hidden" class="form-control text-capitalize" name="id" id="id" placeholder="id" required>
-                    <p>Yakin akan menghapus Blog tersebut ?</p>
+                    <input type="text" class="form-control text-capitalize" name="tag_name" placeholder="Nama Kategori" required>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" id="btndel" class="btn btn-sm btn-primary" value="REMOVE">
+                    <input type="submit" id="btnadd" class="btn btn-sm btn-primary" value="SUBMIT">
                 </div>
             </form>
         </div>
@@ -95,31 +99,46 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade bs-example-modal-xl-2" id="modalchange" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-xl-2" id="modaledit" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">UBAH STATUS BLOG</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">UPDATE KATEGORI</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formchange">@csrf
+            <form id="formedit">@csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label id="news_title"></label>
-                        <input type="hidden" class="form-control" id="id" name="id">
-                    </div>
-                    <div class="form-group">
-                        <select name="news_stat" class="form-control" id="news_stat">
-                            <option value=""></option>
-                            <option value="1">Pending</option>
-                            <option value="2">Tayang</option>
-                        </select>
-                    </div>
+                    <input type="hidden" class="form-control text-capitalize" name="id" id="id" placeholder="id" required>
+                    <input type="text" class="form-control text-capitalize" name="tag_name" id="kategori_name" placeholder="Nama Kategori" required>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" id="btnchange" class="btn btn-sm btn-primary" value="UBAH">
+                    <input type="submit" id="btnedit" class="btn btn-sm btn-primary" value="UPDATE">
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade bs-example-modal-xl-2" id="modaldel" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">HAPUS KATEGORI</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formdel">@csrf
+                <div class="modal-body">
+                    <input type="hidden" class="form-control text-capitalize" name="id" id="id" placeholder="id" required>
+                    <p>Yakin akan menghapus kategori tersebut ?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" id="btndel" class="btn btn-sm btn-primary" value="REMOVE">
                 </div>
             </form>
         </div>
@@ -140,6 +159,15 @@
 <script>
     $(document).ready(function() {
             
+            $('#modaledit').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var kategori_name = button.data('kategori_name')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #kategori_name').val(kategori_name);
+            })
+
             $('#modaldel').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
@@ -147,114 +175,13 @@
                 modal.find('.modal-body #id').val(id);
             })
 
-            $('#modalchange').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                var id = button.data('id')
-                var title = button.data('title')
-                var stat = button.data('stat')
-                var modal = $(this)
-                modal.find('.modal-body #id').val(id);
-                modal.find('.modal-body #news_title').html(title);
-                modal.find('.modal-body #news_stat').val(stat);
-            })
-
-            $('#formchange').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    type: 'POST',
-                    url: "/backend-blog-change-status",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $('#btnchange').attr('disabled', 'disabled');
-                        $('#btnchange').val('Process...');
-                    },
-                    success: function(response) {
-                        if (response.status == 200) {
-                            var oTable = $('#example').dataTable();
-                            oTable.fnDraw(false);
-                            $('#modalchange').modal('hide');
-                            $("#formchange")[0].reset();
-                            $('#btnchange').val('UBAH');
-                            $('#btnchange').attr('disabled', false);
-                            toastr.warning(response.message);
-                            swal({
-                                title: "SUCCESS!",
-                                text: response.message,
-                                type: "warning"
-                            });
-                        } else {
-                            $('#btnchange').val('UBAH');
-                            $('#btnchange').attr('disabled', false);
-                            toastr.error(response.message);
-                            $('#errList').html("");
-                            $('#errList').addClass('alert alert-danger');
-                            $.each(response.errors, function(key, err_values) {
-                                $('#errList').append('<div>' + err_values + '</div>');
-                            });
-                        }
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
-            });
-
-            $('#formdel').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    type: 'POST',
-                    url: "/backend-blog-remove",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $('#btndel').attr('disabled', 'disabled');
-                        $('#btndel').val('Process...');
-                    },
-                    success: function(response) {
-                        if (response.status == 200) {
-                            var oTable = $('#example').dataTable();
-                            oTable.fnDraw(false);
-                            $('#modaldel').modal('hide');
-                            $("#formdel")[0].reset();
-                            $('#btndel').val('REMOVE');
-                            $('#btndel').attr('disabled', false);
-                            toastr.warning(response.message);
-                            swal({
-                                title: "SUCCESS!",
-                                text: response.message,
-                                type: "warning"
-                            });
-                        } else {
-                            $("#formdel")[0].reset();
-                            $('#btndel').val('REMOVE');
-                            $('#btndel').attr('disabled', false);
-                            toastr.error(response.message);
-                            $('#errList').html("");
-                            $('#errList').addClass('alert alert-danger');
-                            $.each(response.errors, function(key, err_values) {
-                                $('#errList').append('<div>' + err_values + '</div>');
-                            });
-                        }
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
-            });
 
             $('#formadd').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: "/backend-kategori-store",
+                    url: "/backend-tag-store",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -300,7 +227,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: "/backend-kategori-store",
+                    url: "/backend-tag-store",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -341,11 +268,57 @@
                 });
             });
 
+            $('#formdel').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: 'POST',
+                    url: "/backend-tag-delete",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('#btndel').attr('disabled', 'disabled');
+                        $('#btndel').val('Process...');
+                    },
+                    success: function(response) {
+                        if (response.status == 200) {
+                            var oTable = $('#example').dataTable();
+                            oTable.fnDraw(false);
+                            $('#modaldel').modal('hide');
+                            $("#formdel")[0].reset();
+                            $('#btndel').val('REMOVE');
+                            $('#btndel').attr('disabled', false);
+                            toastr.success(response.message);
+                            swal({
+                                title: "SUCCESS!",
+                                text: response.message,
+                                type: "success"
+                            });
+                        } else {
+                            $("#formdel")[0].reset();
+                            $('#btndel').val('REMOVE');
+                            $('#btndel').attr('disabled', false);
+                            toastr.error(response.message);
+                            $('#errList').html("");
+                            $('#errList').addClass('alert alert-danger');
+                            $.each(response.errors, function(key, err_values) {
+                                $('#errList').append('<div>' + err_values + '</div>');
+                            });
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+
             var table = $('#example').DataTable({
                 destroy: true,
                 processing: true,
                 serverSide: true,
-                ajax: "/backend-blog",
+                ajax: "/backend-tag",
                 columns: [{
                         "width":10,
                         "data": null,
@@ -355,24 +328,12 @@
                         }
                     },
                     {
-                        data: 'image',
-                        name: 'news_image'
+                        data: 'tag_name',
+                        name: 'tag_name'
                     },
                     {
-                        data: 'news_title',
-                        name: 'news_title'
-                    },
-                    {
-                        data: 'news_url',
-                        name: 'news_url'
-                    },
-                    {
-                        data: 'total_view',
-                        name: 'news_view'
-                    },
-                    {
-                        data: 'status',
-                        name: 'news_stat'
+                        data: 'blog_tag',
+                        name: 'blog_tag'
                     },
                     {
                         data: 'opsi',
