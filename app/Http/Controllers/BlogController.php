@@ -109,11 +109,11 @@ class BlogController extends Controller
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
                     // $request->file('news_image')->move('news_thumbnail/',$filename4);
-
+                    $request->file('news_image')->storeAs('public/news_thumbnail', $filename);
                     $request->file('news_image')->storeAs('public/news_image', $filename);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename2);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
-                    // $request->file('news_image')->storeAs('public/news_thumbnail', $filename);
+                    
 
                     // $smallthumbnailpath = public_path('news_image/thumbnail/'.$filename2);
                     // $this->createThumbnail($smallthumbnailpath, 150, 93);
@@ -176,7 +176,7 @@ class BlogController extends Controller
                             'news_desc'     =>$request->news_desc,
                             'news_url'      =>$news_url_new,
                             'news_image'    =>$filename,
-                            'news_thumb'    =>$filename4,
+                            'news_thumb'    =>$filename,
                             'news_slug'     =>$news_slug_new,
                             'tag_id'        =>$request->tag_id,
                         ]
