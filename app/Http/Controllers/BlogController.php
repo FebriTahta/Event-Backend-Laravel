@@ -103,7 +103,7 @@ class BlogController extends Controller
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
                     // $filename2   = 'small_'.time().'.'.$request->news_image->getClientOriginalExtension();
                     // $filename3   = 'medium_'.time().'.'.$request->news_image->getClientOriginalExtension();
-                    // $filename4   = 'large_'.time().'.'.$request->news_image->getClientOriginalExtension();
+                    $filename4   = 'large_'.time().'.'.$request->news_image->getClientOriginalExtension();
 
                     // $request->file('news_image')->move('news_image/',$filename);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
