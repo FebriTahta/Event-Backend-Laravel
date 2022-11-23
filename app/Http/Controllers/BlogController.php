@@ -104,8 +104,8 @@ class BlogController extends Controller
                     if ($request->id !== null) {
                         # code...
                         $datas = News::find($request->id);
-                        $images = substr($data->image, -25);
-                        $thumbnails = substr($data->thumbnail, -25);
+                        $images = substr($datas->image, -25);
+                        $thumbnails = substr($datas->thumbnail, -25);
                         unlink($images);
                         unlink($thumbnails);
                     }
