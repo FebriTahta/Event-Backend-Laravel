@@ -28,7 +28,7 @@ class BlogController extends Controller
                 return auth()->user()->username;
             })
             ->addColumn('image', function($data){
-                return '<img src="'.asset('image_news/'.$data->thumbnail).'" width="50px" alt="">';
+                return '<img src="'.$data->thumbnail.'" width="50px" alt="">';
             })
             ->addColumn('status',function($data){
                 if ($data->news_stat == '1') {
