@@ -99,7 +99,7 @@
                                             </div>
                                             <div class="preview" style="max-width: 100%; margin-top: 20px">
                                                 <img style="max-width: 300px" id="inputGroupFile01-preview"
-                                                 src="{{ asset('storage/news_image/thumbnail/'.$data->news_thumb) }}">
+                                                 src="{{ asset('news_image/'.$data->thumbnail) }}">
                                             </div>
                                         </div>
                                         <div class="col-md-12 md-3">
