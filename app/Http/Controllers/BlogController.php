@@ -102,27 +102,10 @@ class BlogController extends Controller
                 if($request->hasFile('news_image')) {
 
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
-                    // $filename2   = 'small_'.time().'.'.$request->news_image->getClientOriginalExtension();
-                    // $filename3   = 'medium_'.time().'.'.$request->news_image->getClientOriginalExtension();
-                    // $filename4   = 'thumb_'.time().'.'.$request->news_image->getClientOriginalExtension();
 
                     $request->file('news_image')->move('news_image/',$filename);
                     File::copy(public_path('news_image/'.$filename), public_path('news_image/thumb_'.$filename));
-                    // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
-                    // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
-                    // $request->file('news_image')->move('news_thumbnail/',$filename4);
                     
-                    // $request->file('news_image')->storeAs('public/news_image', $filename);
-                    // $request->file('news_image')->storeAs('public/news_thumbnail', $filename);
-                    // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename2);
-                    // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
-                    
-
-                    // $smallthumbnailpath = public_path('news_image/thumbnail/'.$filename2);
-                    // $this->createThumbnail($smallthumbnailpath, 150, 93);
-            
-                    // $mediumthumbnailpath = public_path('news_image/thumbnail/'.$filename3);
-                    // $this->createThumbnail($mediumthumbnailpath, 300, 185);
             
                     $largethumbnailpath = public_path('news_image/thumb_'.$filename);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
@@ -273,10 +256,8 @@ class BlogController extends Controller
     public function backend_blog_remove(Request $request)
     {
         $data = News::find($request->id);
-        unlink("storage/news_image/".$data->news_image);
-        unlink("storage/news_image/thumbnail/small_".$data->news_image);
-        unlink("storage/news_image/thumbnail/medium_".$data->news_image);
-        unlink("storage/news_image/thumbnail/large_".$data->news_image);
+        unlink("news_image/".$data->image);
+        unlink("news_image/".$data->thumbnail);
         $data->delete();
 
         return response()->json(
