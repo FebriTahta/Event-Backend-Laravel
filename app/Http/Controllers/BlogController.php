@@ -129,16 +129,20 @@ class BlogController extends Controller
                         $news_url_new   = $request->news_url;
                     }else {
                         # code...
-                        if ($exist_url->news_url == $data_edit->news_url && $exist_url !== null ) {
-                            # code...
-                            $news_url_new   = $request->news_url;
-                        }elseif($exist_url->news_url !== $data_edit->news_url && $exist_url == null) {
-                            # code...
-                            $news_url_new   = $request->news_url;
-                        }else {
+                        if ($request->id == null) {
                             # code...
                             $news_url_new   = $request->news_url.'-'.$exist_url->count();
+                        }else {
+                            # code...
+                            if ($exist_url->news_url == $data_edit->news_url && $exist_url !== null ) {
+                                # code...
+                                $news_url_new   = $request->news_url;
+                            }elseif($exist_url->news_url !== $data_edit->news_url && $exist_url == null) {
+                                # code...
+                                $news_url_new   = $request->news_url;
+                            }
                         }
+                        
                     }
 
                     if ($exist_slug == null) {
@@ -146,16 +150,20 @@ class BlogController extends Controller
                         $news_slug_new  = Str::slug($request->news_title);
                     }else {
                         # code...
-                        if ($exist_slug->news_slug == $data_edit->news_slug && $exist_slug !== null) {
-                            # code...
-                            $news_slug_new  = Str::slug($request->news_title);
-                        }elseif($exist_slug->news_slug !== $data_edit->news_slug && $exist_slug == null) {
-                            # code...
-                            $news_slug_new  = Str::slug($request->news_title);
-                        }else {
+                        if ($request->id == null) {
                             # code...
                             $news_slug_new  = Str::slug($request->news_title).'-'.$exist_slug->count();
+                        }else {
+                            # code...
+                            if ($exist_slug->news_slug == $data_edit->news_slug && $exist_slug !== null) {
+                                # code...
+                                $news_slug_new  = Str::slug($request->news_title);
+                            }elseif($exist_slug->news_slug !== $data_edit->news_slug && $exist_slug == null) {
+                                # code...
+                                $news_slug_new  = Str::slug($request->news_title);
+                            }
                         }
+                        
                     }
 
                     $data = News::updateOrCreate(
