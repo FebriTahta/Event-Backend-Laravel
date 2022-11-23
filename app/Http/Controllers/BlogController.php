@@ -283,6 +283,7 @@ class BlogController extends Controller
         $penulis    = User::get();
         $random     = Str::random(5);
         $data       = News::findOrFail($id);
-        return view('page.blog_edit',compact('penulis','random','data'));
+        $tag = Tag::get();
+        return view('page.blog_edit',compact('penulis','random','data','tag'));
     }
 }

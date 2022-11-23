@@ -86,6 +86,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            
                                             <div class="col-md-6 mb-3">
                                                 <label>Url Event Share </label>
                                                 <input type="text" class="form-control" name="news_url"

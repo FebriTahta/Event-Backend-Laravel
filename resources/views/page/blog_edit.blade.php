@@ -83,6 +83,20 @@
                                                 >Pending</option>
                                             </select>
                                         </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label>Tag / Kategori Blog </label>
+                                            <select name="tag_id" class="form-control" id="" required>
+                                                @foreach ($tag as $item)
+                                                    <option value="{{ $item->id }}" 
+                                                        @if ($data->tag_id == $item->id)
+                                                            selected
+                                                        @endif
+                                                    >{{ $item->tag_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
                                         <div class="col-md-6 mb-3">
                                             <label>Url Event Share </label>
                                             <input type="text" class="form-control" name="news_url"
