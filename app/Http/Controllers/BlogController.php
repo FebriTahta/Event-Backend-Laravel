@@ -110,7 +110,7 @@ class BlogController extends Controller
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
                     // $request->file('news_image')->move('news_thumbnail/',$filename4);
 
-                    $request->file('news_image')->storeAs('public/news_image', $filename);
+                    // $request->file('news_image')->storeAs('public/news_image', $filename);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename2);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
                     $request->file('news_image')->storeAs('public/news_thumbnail', $filename4);
