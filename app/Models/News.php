@@ -31,8 +31,8 @@ class News extends Model
         return $this->belongsTo(Tag::class);
     }
 
-    // public function getNewsImageAttribute($value)
-    // {
-    //     return asset('news_image/'.$value);
-    // }
+    public function getNewsImageAttribute($value)
+    {
+        return asset('news_image/'.$value);
+    }
 }
