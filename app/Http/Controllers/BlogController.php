@@ -258,8 +258,8 @@ class BlogController extends Controller
         $data = News::find($request->id);
         $image = substr($data->image, -14);
         $thumbnail = substr($data->thumbnail, -20);
-        unlink($image);
-        unlink($thumbnail);
+        unlink('news_image/'.$image);
+        unlink('news_image/'.$thumbnail);
         $data->delete();
 
         return response()->json(
