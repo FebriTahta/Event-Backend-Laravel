@@ -103,17 +103,17 @@ class BlogController extends Controller
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
                     // $filename2   = 'small_'.time().'.'.$request->news_image->getClientOriginalExtension();
                     // $filename3   = 'medium_'.time().'.'.$request->news_image->getClientOriginalExtension();
-                    $filename4   = 'large_'.time().'.'.$request->news_image->getClientOriginalExtension();
+                    // $filename4   = 'large_'.time().'.'.$request->news_image->getClientOriginalExtension();
 
                     // $request->file('news_image')->move('news_image/',$filename);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
                     // $request->file('news_image')->move('news_thumbnail/',$filename4);
 
-                    // $request->file('news_image')->storeAs('public/news_image', $filename);
+                    $request->file('news_image')->storeAs('public/news_image', $filename);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename2);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
-                    $request->file('news_image')->storeAs('public/news_thumbnail', $filename);
+                    // $request->file('news_image')->storeAs('public/news_thumbnail', $filename);
 
                     // $smallthumbnailpath = public_path('news_image/thumbnail/'.$filename2);
                     // $this->createThumbnail($smallthumbnailpath, 150, 93);
