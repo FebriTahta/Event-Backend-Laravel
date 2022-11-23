@@ -110,13 +110,13 @@ class BlogController extends Controller
                     $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
                     $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename4);
 
-                    $smallthumbnailpath = public_path('storage/news_image/thumbnail/'.$filename2);
+                    $smallthumbnailpath = public_path('news_image/thumbnail/'.$filename2);
                     $this->createThumbnail($smallthumbnailpath, 150, 93);
             
-                    $mediumthumbnailpath = public_path('storage/news_image/thumbnail/'.$filename3);
+                    $mediumthumbnailpath = public_path('news_image/thumbnail/'.$filename3);
                     $this->createThumbnail($mediumthumbnailpath, 300, 185);
             
-                    $largethumbnailpath = public_path('storage/news_image/thumbnail/'.$filename4);
+                    $largethumbnailpath = public_path('news_image/thumbnail/'.$filename4);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
                     
                     $exist_url     = News::where('news_url', $request->news_ur)->first();
