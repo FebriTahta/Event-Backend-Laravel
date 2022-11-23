@@ -28,7 +28,7 @@ class BlogController extends Controller
                 return auth()->user()->username;
             })
             ->addColumn('image', function($data){
-                return '<img src="'.asset('/news_image/thumbnail/'.$data->news_thumb).'" width="50px" alt="">';
+                return '<img src="'.asset('news_image/'.$data->thumbnail).'" width="50px" alt="">';
             })
             ->addColumn('status',function($data){
                 if ($data->news_stat == '1') {
@@ -178,8 +178,8 @@ class BlogController extends Controller
                             'news_stat'     =>$request->news_stat,
                             'news_desc'     =>$request->news_desc,
                             'news_url'      =>$news_url_new,
-                            'news_image'    =>$filename,
-                            'news_thumb'    =>$filename,
+                            'image'         =>$filename,
+                            'thumbnail'     =>$filename,
                             'news_slug'     =>$news_slug_new,
                             'tag_id'        =>$request->tag_id,
                         ]
