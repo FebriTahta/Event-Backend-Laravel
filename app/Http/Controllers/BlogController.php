@@ -256,8 +256,10 @@ class BlogController extends Controller
     public function backend_blog_remove(Request $request)
     {
         $data = News::find($request->id);
-        unlink($data->image);
-        unlink($data->thumbnail);
+        $image = substr($data->image, -14);
+        $thumbnail = substr($data->thumbnail, -20);
+        unlink($image);
+        unlink($thumbnail);
         $data->delete();
 
         return response()->json(
