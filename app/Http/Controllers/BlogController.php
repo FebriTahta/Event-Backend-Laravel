@@ -265,7 +265,7 @@ class BlogController extends Controller
         return response()->json(
             [
                 'status'        => 200,
-                'message'       => $data->thumbnail.' & '.$thumbnail,
+                'message'       => $data->thumbnail.' & '.$data,
             ]
         );
     }
