@@ -108,12 +108,12 @@ class BlogController extends Controller
                     $request->file('news_image')->move('news_image/',$filename);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
-                    $request->file('news_image')->move('news_image/thumbnail/',$filename4);
+                    // $request->file('news_image')->move('news_image/thumbnail/',$filename4);
 
                     // $request->file('news_image')->storeAs('public/news_image', $filename);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename2);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
-                    // $request->file('news_image')->storeAs('news_image/thumbnail', $filename4);
+                    $request->file('news_image')->storeAs('news_thumbnail', $filename4);
 
                     // $smallthumbnailpath = public_path('news_image/thumbnail/'.$filename2);
                     // $this->createThumbnail($smallthumbnailpath, 150, 93);
@@ -121,7 +121,7 @@ class BlogController extends Controller
                     // $mediumthumbnailpath = public_path('news_image/thumbnail/'.$filename3);
                     // $this->createThumbnail($mediumthumbnailpath, 300, 185);
             
-                    $largethumbnailpath = public_path('news_image/thumbnail/'.$filename4);
+                    $largethumbnailpath = public_path('news_thumbnail/'.$filename4);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
                     
                     $exist_url     = News::where('news_url', $request->news_ur)->first();
