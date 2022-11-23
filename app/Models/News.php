@@ -31,9 +31,9 @@ class News extends Model
         return $this->belongsTo(Tag::class);
     }
 
-    public function getThuhmbnailAttribute($value)
+    public function getThumbnailAttribute($value)
     {
-        return asset('news_image/'.$value);
+        return asset('image_news/'.$value);
     }
 
     public function getImageAttribute($value)
