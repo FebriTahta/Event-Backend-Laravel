@@ -15,8 +15,8 @@ class News extends Model
         'news_url',
         'news_view',
         'news_desc',
-        'news_image',
-        'news_thumb',
+        'image',
+        'thumbnail',
         'news_stat',
         'tag_id',
     ];
@@ -31,7 +31,12 @@ class News extends Model
         return $this->belongsTo(Tag::class);
     }
 
-    public function getNewsImageAttribute($value)
+    public function getThuhmbnailAttribute($value)
+    {
+        return asset('news_image/'.$value);
+    }
+
+    public function getImageAttribute($value)
     {
         return asset('news_image/'.$value);
     }
