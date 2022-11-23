@@ -31,9 +31,9 @@ class News extends Model
         return $this->belongsTo(Tag::class);
     }
 
-    public function getThumbnailAttribute($value)
+    public function getNewsImageAttribute($value)
     {
         // return 'https://nurulfalah.org/img_thumbnail/'.$value;
-        return asset('storage/news_image/'.$value);
+        return asset('news_image/'.$value);
     }
 }
