@@ -101,12 +101,20 @@ class BlogController extends Controller
                 
                 if($request->hasFile('news_image')) {
 
+                    if ($request->id !== null) {
+                        # code...
+                        $datas = News::find($request->id);
+                        $images = substr($data->image, -25);
+                        $thumbnails = substr($data->thumbnail, -25);
+                        unlink($images);
+                        unlink($thumbnails);
+                    }
+
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
                     $request->file('news_image')->move('news_image/',$filename);
                     $thumbnail   = $filename;
                     File::copy(public_path('news_image/'.$filename), public_path('image_news/'.$thumbnail));
                     
-            
                     $largethumbnailpath = public_path('news_image/'.$thumbnail);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
                     
