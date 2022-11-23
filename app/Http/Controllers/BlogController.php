@@ -102,12 +102,12 @@ class BlogController extends Controller
                 if($request->hasFile('news_image')) {
 
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
-
                     $request->file('news_image')->move('news_image/',$filename);
-                    File::copy(public_path('news_image/'.$filename), public_path('news_image/thumb_'.$filename));
+                    $thumbnail   = 'thumb_'.$filename;
+                    File::copy(public_path('news_image/'.$filename), public_path('news_image/'.$thumbnail));
                     
             
-                    $largethumbnailpath = public_path('news_image/thumb_'.$filename);
+                    $largethumbnailpath = public_path('news_image/'.$thumbnail);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
                     
                     $exist_url     = News::where('news_url', $request->news_ur)->first();
@@ -162,7 +162,7 @@ class BlogController extends Controller
                             'news_desc'     =>$request->news_desc,
                             'news_url'      =>$news_url_new,
                             'image'         =>$filename,
-                            'thumbnail'     =>$filename,
+                            'thumbnail'     =>$thumbnail,
                             'news_slug'     =>$news_slug_new,
                             'tag_id'        =>$request->tag_id,
                         ]
@@ -258,7 +258,7 @@ class BlogController extends Controller
         $data = News::find($request->id);
         $image = substr($data->image, -25);
         $thumbnail = substr($data->thumbnail, -31);
-        // unlink($image);
+        unlink($image);
         unlink($thumbnail);
         $data->delete();
 
