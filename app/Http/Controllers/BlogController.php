@@ -258,7 +258,7 @@ class BlogController extends Controller
         $data = News::find($request->id);
         $image = substr($data->image, -25);
         $thumbnail = substr($data->thumbnail, -31);
-        unlink($image);
+        // unlink($image);
         unlink($thumbnail);
         $data->delete();
 
