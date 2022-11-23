@@ -103,8 +103,8 @@ class BlogController extends Controller
 
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
                     $request->file('news_image')->move('news_image/',$filename);
-                    $thumbnail   = 'thumb_'.$filename;
-                    File::copy(public_path('news_image/'.$filename), public_path('news_image/'.$thumbnail));
+                    $thumbnail   = $filename;
+                    File::copy(public_path('news_image/'.$filename), public_path('news_image2/'.$thumbnail));
                     
             
                     $largethumbnailpath = public_path('news_image/'.$thumbnail);
@@ -257,7 +257,7 @@ class BlogController extends Controller
     {
         $data = News::find($request->id);
         // $image = substr($data->image, -25);
-        $thumbnail = substr($data->thumbnail, 30);
+        $thumbnail = substr($data->thumbnail, -26);
         // unlink($image);
         unlink($thumbnail);
         $data->delete();
