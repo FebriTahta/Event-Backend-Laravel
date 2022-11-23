@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Image;
 use Validator;
 use App\Models\Tag;
+use File;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
