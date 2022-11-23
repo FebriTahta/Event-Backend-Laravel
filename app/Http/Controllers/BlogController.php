@@ -108,12 +108,12 @@ class BlogController extends Controller
                     $request->file('news_image')->move('news_image/',$filename);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
-                    $request->file('news_image')->move('news_image/thumbnail/',$filename4);
+                    // $request->file('news_image')->move('news_image/thumbnail/',$filename4);
 
                     // $request->file('news_image')->storeAs('public/news_image', $filename);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename2);
                     // $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename3);
-                    $request->file('news_image')->storeAs('public/news_image/thumbnail', $filename4);
+                    $request->file('news_image')->storeAs('news_image/thumbnail', $filename4);
 
                     // $smallthumbnailpath = public_path('news_image/thumbnail/'.$filename2);
                     // $this->createThumbnail($smallthumbnailpath, 150, 93);
