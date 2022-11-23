@@ -28,7 +28,7 @@ class BlogController extends Controller
                 return auth()->user()->username;
             })
             ->addColumn('image', function($data){
-                return '<img src="'.asset('news_image/'.$data->thumbnail).'" width="50px" alt="">';
+                return '<img src="'.asset('image_news/'.$data->thumbnail).'" width="50px" alt="">';
             })
             ->addColumn('status',function($data){
                 if ($data->news_stat == '1') {
@@ -104,7 +104,7 @@ class BlogController extends Controller
                     $filename    = time().'.'.$request->news_image->getClientOriginalExtension();
                     $request->file('news_image')->move('news_image/',$filename);
                     $thumbnail   = $filename;
-                    File::copy(public_path('news_image/'.$filename), public_path('news_image2/'.$thumbnail));
+                    File::copy(public_path('news_image/'.$filename), public_path('image_news/'.$thumbnail));
                     
             
                     $largethumbnailpath = public_path('news_image/'.$thumbnail);
@@ -257,9 +257,9 @@ class BlogController extends Controller
     {
         $data = News::find($request->id);
         $image = substr($data->image, -25);
-        $thumbnail = substr($data->thumbnail, -26);
-        // unlink($image);
-        // unlink($thumbnail);
+        $thumbnail = substr($data->thumbnail, -25);
+        unlink($image);
+        unlink($thumbnail);
         $data->delete();
 
         return response()->json(
