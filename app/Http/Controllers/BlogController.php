@@ -83,7 +83,7 @@ class BlogController extends Controller
             # code...
             $validator = Validator::make($request->all(), [
                 'user_id'       => 'required|',
-                'news_title'    => 'required|',
+                'news_title'    => 'required|unique',
                 'news_url'      => 'required|',
                 'news_desc'     => 'required|',
                 'news_stat'     => 'required|',
