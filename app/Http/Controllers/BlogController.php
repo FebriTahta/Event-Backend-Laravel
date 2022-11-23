@@ -107,7 +107,7 @@ class BlogController extends Controller
                     // $filename4   = 'thumb_'.time().'.'.$request->news_image->getClientOriginalExtension();
 
                     $request->file('news_image')->move('news_image/',$filename);
-                    File::copy(public_path('news_image/',$filename), public_path('news_image/thumb_',$filename));
+                    File::copy(public_path('news_image/'.$filename), public_path('news_image/thumb_'.$filename));
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename2);
                     // $request->file('news_image')->move('news_image/thumbnail/',$filename3);
                     // $request->file('news_image')->move('news_thumbnail/',$filename4);
