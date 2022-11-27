@@ -88,7 +88,8 @@ class ApiController extends Controller
         $data = News::where('news_stat', 2)
                     ->join('users', 'news.user_id', 'users.id')
                     ->select('news_title','news_url','news_slug','thumbnail','image',
-                             'news_desc','users.username','news_views')
+                             'news_desc','users.username','news_views','news.id as id','news_stat')
+                    ->orderBy('id','desc')
                     ->paginate(10);
 
 
