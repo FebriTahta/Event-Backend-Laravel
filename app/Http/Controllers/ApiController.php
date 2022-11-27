@@ -101,6 +101,17 @@ class ApiController extends Controller
         }
     }
 
+    public function detail_blog($slug)
+    {
+        $data = News::where('news_slug')->first();
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
     
 
     public function recent_blog_home()
