@@ -103,7 +103,11 @@ class ApiController extends Controller
 
     public function detail_blog($slug)
     {
-        $data = News::where('news_slug')->first();
+        $data = News::where('news_slug', $slug)->first();
+        $total_view = $data->news_views;
+        $views_baru = $total_view + 1;
+        $data->update(['news_views'=>$views_baru]);
+        
         if($data)
         {
             return ApiFormatter::createApi(200, 'success' ,$data);
