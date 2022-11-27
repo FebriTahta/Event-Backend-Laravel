@@ -25,4 +25,7 @@ Route::get('search-kategori-api/{kategori_slug}',[ApiController::class,'search_k
 Route::get('search-event/{search}', [ApiController::class,'search_event']);
 
 
-Route::get('/daftar-blog-api', [ApiController::class,'daftar_blog']);
+Route::controller(ApiController::class)->group(function(){
+    Route::get('/daftar-blog-api','daftar_blog');
+    Route::get('/blog/{slug}','detail_blog');
+});

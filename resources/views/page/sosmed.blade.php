@@ -8,7 +8,7 @@
                     <div class="col">
                         <h4>
                             <i class="icon-box"></i>
-                            Partner
+                            Sosmed
                         </h4>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                                     <div class="float-right">
                                         <span class="icon icon-note-list text-light-blue s-48"></span>
                                     </div>
-                                    <div class="counter-title">Partner</div>
+                                    <div class="counter-title">Sosmed</div>
                                     <h5 class="sc-counter mt-3" id="total_kategori">{{ $total }}</h5>
                                 </div>
                                 <div class="progress progress-xs r-0">
@@ -52,7 +52,7 @@
                         <div class="card-body">
                             <div class="card-title" style="margin-left: 15px">
                                 <button data-toggle="modal" data-target="#modaladd" class="btn btn-success btn-sm">Tambah
-                                    Partner</button>
+                                    Sosmed</button>
                             </div>
                             <div class="table-responsive">
                                 <table id="example"
@@ -60,8 +60,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10%">No</th>
-                                            <th>Image</th>
-                                            <th>Partner Name</th>
+                                            <th>Sosmed Name</th>
+                                            <th>Sosmed Link</th>
                                             <th style="width: 15%">Opsi</th>
                                         </tr>
                                     </thead>
@@ -83,7 +83,7 @@
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">TAMBAH PARTNER BARU</h5>
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">TAMBAH SOSMED BARU</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -91,20 +91,12 @@
                 <form id="formadd">@csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" class="form-control text-capitalize" name="partner_name"
-                            placeholder="Nama Partner" required>
+                            <input type="text" class="form-control " name="sosmed_name"
+                            placeholder="Nama Sosmed" required>
                         </div>
                         <div class="form-group">
-                            <label>Upload Image</label>
-                            <div class="custom-file">
-                                <input type="file" name="partner_image" class="custom-file-input" id="inputGroupFile01"
-                                    accept="image/*" onchange="showPreview(event);" required>
-                                <p class="custom-file-label" id="label_img" for="inputGroupFile01">Chose
-                                    Image</p>
-                            </div>
-                            <div class="preview" style="max-width: 100%; margin-top: 20px">
-                                <img style="max-width: 300px" id="inputGroupFile01-preview" src="">
-                            </div>
+                            <input type="text" class="form-control " name="sosmed_link"
+                            placeholder="Link Sosmed" required>
                         </div>
                         
                     </div>
@@ -125,7 +117,7 @@
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">UPDATE PARTNER</h5>
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">UPDATE SOSMED</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -135,22 +127,14 @@
                         <div class="form-group">
                             <input type="hidden" class="form-control text-capitalize" name="id" id="id"
                             placeholder="id" required>
-                        <input type="text" class="form-control text-capitalize" name="partner_name" id="partner_name"
-                            placeholder="Nama Kategori" required>
+                            <input type="text" class="form-control text-capitalize" name="sosmed_name" id="sosmed_name"
+                            placeholder="Nama Sosmed" required>
                         </div>
                         
                         <div class="form-group">
                             <div class="form-group">
-                                <label>Upload Image</label>
-                                <div class="custom-file">
-                                    <input type="file" name="partner_image" class="custom-file-input" id="inputGroupFile02"
-                                        accept="image/*" onchange="showPreview2(event);">
-                                    <p class="custom-file-label" id="label_img2" for="inputGroupFile01">Update
-                                        Image ?</p>
-                                </div>
-                                <div class="preview2" style="max-width: 100%; margin-top: 20px">
-                                    <img style="max-width: 300px" id="inputGroupFile02-preview" src="">
-                                </div>
+                                <input type="text" class="form-control text-capitalize" name="sosmed_link" id="sosmed_link"
+                                placeholder="Sosmed Link" required>
                             </div>
                         </div>
                     </div>
@@ -169,7 +153,7 @@
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">HAPUS PARTNER</h5>
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">HAPUS SOSMED</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -178,7 +162,7 @@
                     <div class="modal-body">
                         <input type="hidden" class="form-control text-capitalize" name="id" id="id"
                             placeholder="id" required>
-                        <p>Yakin akan menghapus partner tersebut ?</p>
+                        <p>Yakin akan menghapus Sosmed tersebut ?</p>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" id="btndel" class="btn btn-sm btn-primary" value="REMOVE">
@@ -199,40 +183,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <script>
-        function showPreview(event) {
-            if (event.target.files.length > 0) {
-                var src = URL.createObjectURL(event.target.files[0]);
-                var preview = document.getElementById("inputGroupFile01-preview");
-                preview.src = src;
-                preview.style.display = "block";
-                $('#label_img').html(src.substr(0, 30));
-            }
-        }
-
-        function showPreview2(event) {
-            if (event.target.files.length > 0) {
-                var src = URL.createObjectURL(event.target.files[0]);
-                var preview = document.getElementById("inputGroupFile02-preview");
-                preview.src = src;
-                preview.style.display = "block";
-                $('#label_img2').html(src.substr(0, 30));
-            }
-        }
 
         $(document).ready(function() {
 
             $('#modaledit').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
-                var partner_name = button.data('partner_name')
-                var partner_image = button.data('partner_image')
+                var sosmed_name = button.data('sosmed_name')
+                var sosmed_link = button.data('sosmed_link')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
-                modal.find('.modal-body #partner_name').val(partner_name);
-                var src = partner_image;
-                var preview2 = document.getElementById("inputGroupFile02-preview");
-                preview2.src = partner_image;
-
+                modal.find('.modal-body #sosmed_name').val(sosmed_name);
+                modal.find('.modal-body #sosmed_link').val(sosmed_link);
             })
 
             $('#modaldel').on('show.bs.modal', function(event) {
@@ -248,7 +210,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: "/backend-partner-store",
+                    url: "/backend-sosmed-store",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -263,9 +225,6 @@
                             oTable.fnDraw(false);
                             $('#modaladd').modal('hide');
                             $("#formadd")[0].reset();
-                            $('#label_img').html('');
-                            var preview = document.getElementById("inputGroupFile01-preview");
-                            preview.src = '';
                             
                             $('#btnadd').val('SUBMIT');
                             $('#btnadd').attr('disabled', false);
@@ -298,7 +257,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: "/backend-partner-update",
+                    url: "/backend-sosmed-store",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -344,7 +303,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: "/backend-partner-delete",
+                    url: "/backend-sosmed-delete",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -389,7 +348,7 @@
                 destroy: true,
                 processing: true,
                 serverSide: true,
-                ajax: "/backend-partner",
+                ajax: "/backend-sosmed",
                 columns: [{
                         "width": 10,
                         "data": null,
@@ -398,13 +357,14 @@
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
                     },
+                    
                     {
-                        data: 'image',
-                        name: 'partner_image'
+                        data: 'sosmed_name',
+                        name: 'sosmed_name'
                     },
                     {
-                        data: 'partner_name',
-                        name: 'partner_name'
+                        data: 'sosmed_link',
+                        name: 'sosmed_link'
                     },
                     {
                         data: 'opsi',

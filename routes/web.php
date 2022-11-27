@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\SosmedController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -76,6 +77,12 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
         Route::post('/backend-partner-store', 'backend_partner_store');
         Route::post('/backend-partner-delete', 'backend_partner_delete');
         Route::post('/backend-partner-update', 'backend_partner_update');
+    });
+
+    Route::controller(SosmedController::class)->group(function(){
+        Route::get('/backend-sosmed','backend_sosmed');
+        Route::post('/backend-sosmed-store','backend_sosmed_store');
+        Route::post('/backend-sosmed-delete','backend_sosmed_delete');
     });
      
     Route::controller(DashboardController::class)->group(function(){

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('news_stat')->nullable();
+            $table->string('news_views')->nullable();
             $table->timestamps();
         });
     }

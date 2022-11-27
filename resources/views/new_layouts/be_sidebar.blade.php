@@ -210,12 +210,24 @@
                         </a>
                         <ul class="treeview-menu">
 
-                            <li><a href="/backend-partner"><i class="icon icon-group purple-text"></i>Daftar Partner</a>
+                            <li>
+                                <a href="/backend-partner"><i class="icon icon-group purple-text"></i>Daftar Partner</a>
                             </li>
                         </ul>
                     </li>
 
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="icon icon icon-whatsapp blue-text s-18 "></i> <span>&nbsp;Manajemen Sosmed</span>
+                            <i class="icon icon-angle-left s-18 pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
 
+                            <li>
+                                <a href="/backend-sosmed"><i class="icon icon-whatsapp blue-text"></i>Daftar Sosmed</a>
+                            </li>
+                        </ul>
+                    </li>
 
 
                     <li class="header light mt-3"><strong>ACCOUNT</strong></li>

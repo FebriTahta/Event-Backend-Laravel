@@ -19,6 +19,7 @@ class News extends Model
         'thumbnail',
         'news_stat',
         'tag_id',
+        'news_views'
     ];
 
     public function user()
