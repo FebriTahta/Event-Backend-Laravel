@@ -101,6 +101,25 @@ class ApiController extends Controller
         }
     }
 
+    public function pupular_blog()
+    {
+        $data = News::where('news_stat', 2)
+                    ->join('users', 'news.user_id', 'users.id')
+                    ->select('news_title','news_url','news_slug','thumbnail',
+                    'news_views','news.id as id','news_stat','news.created_at')
+                    ->orderBy('news_views','asc')
+                    ->limit(4)
+                    ->get();
+
+
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
     public function detail_blog($slug)
     {
 
