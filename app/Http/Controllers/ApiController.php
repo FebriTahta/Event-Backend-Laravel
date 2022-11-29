@@ -103,7 +103,15 @@ class ApiController extends Controller
 
     public function detail_blog($slug)
     {
-        $data = News::where('news_slug', $slug)->first();
+
+        $data = News::where('news_stat', 2)
+                ->where('news_slug', $slug)
+                ->join('users', 'news.user_id', 'users.id')
+                ->select('news_title','news_desc','news_url','news_slug','thumbnail','image',
+                'users.username','news_views','news.id as id','news_stat','news.created_at')
+                ->first();
+
+        // $data = News::where('news_slug', $slug)->first();
         $total_view = $data->news_views;
         $views_baru = $total_view + 1;
         $data->update(['news_views'=>$views_baru]);
