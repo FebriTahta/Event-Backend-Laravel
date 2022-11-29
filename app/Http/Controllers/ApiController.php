@@ -101,7 +101,7 @@ class ApiController extends Controller
         }
     }
 
-    public function pupular_blog()
+    public function popular_blog()
     {
         $data = News::where('news_stat', 2)
                     ->join('users', 'news.user_id', 'users.id')
