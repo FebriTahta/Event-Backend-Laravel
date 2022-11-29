@@ -44,7 +44,7 @@ class News extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return \Carbon\Carbon::parse($date)->format('d m Y');
+        return \Carbon\Carbon::parse($date)->format('d F Y');
     }
 
     public function getUpdatedAtAttribute($date)
