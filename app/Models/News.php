@@ -41,4 +41,14 @@ class News extends Model
     {
         return asset('news_image/'.$value);
     }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d m Y');
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d m Y');
+    }
 }
