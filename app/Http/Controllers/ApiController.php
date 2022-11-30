@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Kategori;
 use App\Models\News;
+use App\Models\Tag;
 use App\Helpers\ApiFormatter;
 use Illuminate\Http\Request;
 
