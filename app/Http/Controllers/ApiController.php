@@ -128,7 +128,8 @@ class ApiController extends Controller
                 ->join('users', 'news.user_id', 'users.id')
                 ->join('tags','news.tag_id','tags.id')
                 ->select('news_title','news_desc','news_url','news_slug','thumbnail','image',
-                'users.username','news_views','news.id as id','news_stat','news.created_at','tag_name')
+                'users.username','news_views','news.id as id','news_stat','news.created_at',
+                'tag_name','tag_id')
                 ->first();
 
         $total_view = $data->news_views;
