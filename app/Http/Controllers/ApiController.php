@@ -107,7 +107,7 @@ class ApiController extends Controller
                     ->join('users', 'news.user_id', 'users.id')
                     ->select('news_title','news_url','news_slug','thumbnail',
                     'news_views','news.id as id','news_stat','news.created_at')
-                    ->orderBy('news_views','asc')
+                    ->orderBy('news_views','desc')
                     ->limit(4)
                     ->get();
 
@@ -126,11 +126,11 @@ class ApiController extends Controller
         $data = News::where('news_stat', 2)
                 ->where('news_slug', $slug)
                 ->join('users', 'news.user_id', 'users.id')
+                ->join('tags','news.tag_id','tags.id')
                 ->select('news_title','news_desc','news_url','news_slug','thumbnail','image',
-                'users.username','news_views','news.id as id','news_stat','news.created_at')
+                'users.username','news_views','news.id as id','news_stat','news.created_at','tag_name')
                 ->first();
 
-        // $data = News::where('news_slug', $slug)->first();
         $total_view = $data->news_views;
         $views_baru = $total_view + 1;
         $data->update(['news_views'=>$views_baru]);
@@ -145,11 +145,17 @@ class ApiController extends Controller
 
     
 
-    public function recent_blog_home()
+    public function similar_blog($tag_id)
     {
-        $data = News::orderBy('created_at', 'desc')
+
+        $data = News::where('news_stat', 2)->where('tag_id', $tag_id)
+                    ->join('users', 'news.user_id', 'users.id')
+                    ->select('news_title','news_url','news_slug','thumbnail',
+                    'news_views','news.id as id','news_stat','news.created_at')
+                    ->orderBy('id','desc')
                     ->limit(6)
                     ->get();
+
         if($data)
         {
             return ApiFormatter::createApi(200, 'success' ,$data);

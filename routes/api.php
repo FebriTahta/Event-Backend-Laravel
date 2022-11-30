@@ -29,4 +29,5 @@ Route::controller(ApiController::class)->group(function(){
     Route::get('/daftar-blog','daftar_blog');
     Route::get('/blog/{slug}','detail_blog');
     Route::get('/popular-blog','popular_blog');
+    Route::get('/similar-blog/{tag_id}','similar_blog');
 });
