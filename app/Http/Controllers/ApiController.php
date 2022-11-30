@@ -186,7 +186,7 @@ class ApiController extends Controller
                 'status' => 200,
                 'message' => 'success',
                 'data' => $data,
-                'tag'  => $tag,
+                'tag'  => $tag->tag_name,
 
             ]);
         }else {
