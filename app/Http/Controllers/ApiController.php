@@ -169,7 +169,9 @@ class ApiController extends Controller
 
     public function daftar_blog_tag($tag_slug)
     {
-        $data = News::with('user','tag')->whereHas('tag', function($q) use ($tag_slug){
+        $data = News::join('users','news.user_id','users.id')
+                    ->join('tags','news.tag_id','tags.id')
+                    ->whereHas('tag', function($q) use ($tag_slug){
                         $q->where('tag_slug',$tag_slug);
                     })->select('news.id as id','news_slug','news_title','news.created_at','thumbnail','image',
                     'users.username')
