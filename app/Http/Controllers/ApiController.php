@@ -164,4 +164,21 @@ class ApiController extends Controller
             return ApiFormatter::createApi(400, 'failed');
         }
     }
+
+    // tag Blog
+    public function daftar_tag_blog()
+    {
+        $data = Tag::wherehas('news')
+                ->join('news','tags.id', '=' ,'news.tag_id')
+                ->select('tags.*','news.*',DB::raw('count(news.tag_id) AS total'))
+                ->groupBy('news.tag_id')
+                ->get();
+
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
 }
