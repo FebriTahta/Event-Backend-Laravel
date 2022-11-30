@@ -146,10 +146,10 @@ class ApiController extends Controller
 
     
 
-    public function similar_blog($tag_id)
+    public function similar_blog($tag_id, $exept_current)
     {
 
-        $data = News::where('news_stat', 2)->where('tag_id', $tag_id)
+        $data = News::where('news_stat', 2)->where('tag_id', $tag_id)->where('id','<>', $exept_current)
                     ->join('users', 'news.user_id', 'users.id')
                     ->select('news_title','news_url','news_slug','thumbnail',
                     'news_views','news.id as id','news_stat','news.created_at','tag_id')
