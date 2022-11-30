@@ -92,7 +92,7 @@ class ApiController extends Controller
                     ->select('news_title','news_url','news_slug','thumbnail','image',
                     'users.username','news_views','news.id as id','news_stat','news.created_at')
                     ->orderBy('id','desc')
-                    ->paginate(10);
+                    ->paginate(8);
 
 
         if($data)
@@ -165,6 +165,16 @@ class ApiController extends Controller
         }else {
             return ApiFormatter::createApi(400, 'failed');
         }
+    }
+
+    public function daftar_blog_tag($tag_slug)
+    {
+        $data = News::with('user','tag')->whereHas('tag', function($q) use ($tag_slug){
+                        $q->where('tag_slug',$tag_slug);
+                    })->select('news.id as id','news_slug','news_name','news.created_at','thumbnail','image',
+                    'users.username')
+                    ->orderBy('id','desc')
+                    ->paginate(8);
     }
 
     // tag Blog
