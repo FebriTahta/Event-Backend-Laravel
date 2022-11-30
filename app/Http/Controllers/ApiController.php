@@ -169,6 +169,7 @@ class ApiController extends Controller
 
     public function daftar_blog_tag($tag_slug)
     {
+        $tag  = Tag::where('tag_slug',$tag_slug)->first();
         $data = News::join('users','news.user_id','users.id')
                     ->join('tags', function($q) use ($tag_slug) {
                         $q->on('news.tag_id','=','tags.id')
@@ -180,7 +181,14 @@ class ApiController extends Controller
                     ->paginate(8);
         if($data)
         {
-            return ApiFormatter::createApi(200, 'success' ,$data);
+            // return ApiFormatter::createApi(200, 'success' ,$data);
+            return response()->json([
+                'status' => 200,
+                'message' => 'success',
+                'data' => $data,
+                'tag'  => $tag,
+
+            ]);
         }else {
             return ApiFormatter::createApi(400, 'failed');
         }
