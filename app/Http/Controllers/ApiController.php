@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\News;
 use App\Models\Tag;
 use App\Helpers\ApiFormatter;
+use DB;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
