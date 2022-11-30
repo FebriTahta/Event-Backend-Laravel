@@ -175,7 +175,7 @@ class ApiController extends Controller
                         ->where('tags.tag_slug','=', $tag_slug);
                     })
                     ->select('news.id as id','news_slug','news_title','news.created_at','thumbnail','image',
-                    'users.username')
+                    'users.username','tags.tag_name','tags.tag_slug')
                     ->orderBy('id','desc')
                     ->paginate(8);
         if($data)
