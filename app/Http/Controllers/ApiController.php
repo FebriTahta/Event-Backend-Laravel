@@ -151,7 +151,7 @@ class ApiController extends Controller
         $data = News::where('news_stat', 2)->where('tag_id', $tag_id)
                     ->join('users', 'news.user_id', 'users.id')
                     ->select('news_title','news_url','news_slug','thumbnail',
-                    'news_views','news.id as id','news_stat','news.created_at')
+                    'news_views','news.id as id','news_stat','news.created_at','tag_id')
                     ->orderBy('id','desc')
                     ->limit(6)
                     ->get();
