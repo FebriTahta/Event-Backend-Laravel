@@ -178,6 +178,12 @@ class ApiController extends Controller
                     'users.username')
                     ->orderBy('id','desc')
                     ->paginate(8);
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
     }
 
     // tag Blog
