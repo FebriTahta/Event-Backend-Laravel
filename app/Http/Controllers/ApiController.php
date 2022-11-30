@@ -171,7 +171,7 @@ class ApiController extends Controller
     {
         $data = News::with('user','tag')->whereHas('tag', function($q) use ($tag_slug){
                         $q->where('tag_slug',$tag_slug);
-                    })->select('news.id as id','news_slug','news_name','news.created_at','thumbnail','image',
+                    })->select('news.id as id','news_slug','news_title','news.created_at','thumbnail','image',
                     'users.username')
                     ->orderBy('id','desc')
                     ->paginate(8);
