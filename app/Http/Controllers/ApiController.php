@@ -173,7 +173,7 @@ class ApiController extends Controller
         $data = Tag::wherehas('news')
                 ->join('news','tags.id', '=' ,'news.tag_id')
                 ->select('tags.*','news.*',DB::raw('count(news.tag_id) AS total'))
-                ->groupBy('news.tag_id')
+                ->groupBy('id')
                 ->get();
 
         if($data)
