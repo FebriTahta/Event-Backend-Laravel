@@ -137,7 +137,7 @@ class ApiController extends Controller
         $views_baru = $total_view + 1;
 
         $views      = 0;
-        if ($views_baru.length() == 1) {
+        if (strlen($views_baru) == 1) {
             # code...
             $views  = '0'.$views_baru;
         }else {
