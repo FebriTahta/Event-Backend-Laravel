@@ -104,86 +104,86 @@ class EventController extends Controller
                     }
 
                     $filename    = time().'.'.$request->event_image->getClientOriginalExtension();
-                    $request->file('evnt_image')->move('evnt_image/',$filename);
+                    $request->file('event_image')->move('evnt_image/',$filename);
                     $thumbnail   = $filename;
                     File::copy(public_path('evnt_image/'.$filename), public_path('image_evnt/'.$thumbnail));
 
                     $largethumbnailpath = public_path('evnt_image/'.$thumbnail);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
                 
-                    // $exist_url     = Event::where('event_url', $request->event_ur)->first();
-                    // $exist_slug    = Event::where('event_slug', Str::slug($request->event_title))->first();
-                    // $data_edit     = Event::where('id', $request->id)->first();
-                    // $event_url_new  = '';
-                    // $event_slug_new = '';
+                    $exist_url     = Event::where('event_url', $request->event_ur)->first();
+                    $exist_slug    = Event::where('event_slug', Str::slug($request->event_title))->first();
+                    $data_edit     = Event::where('id', $request->id)->first();
+                    $event_url_new  = '';
+                    $event_slug_new = '';
 
-                    // if ($exist_url == null) {
-                    //     # code...
-                    //     $event_url_new   = $request->event_url;
-                    // }else {
-                    //     # code...
-                    //     if ($exist_url->event_url == $data_edit->event_url && $exist_url !== null ) {
-                    //         # code...
-                    //         $event_url_new   = $request->event_url;
-                    //     }elseif($exist_url->event_url !== $data_edit->event_url && $exist_url == null) {
-                    //         # code...
-                    //         $event_url_new   = $request->event_url;
-                    //     }else {
-                    //         # code...
-                    //         $event_url_new   = $request->event_url.'-'.$exist_url->count();
-                    //     }
-                    // }
+                    if ($exist_url == null) {
+                        # code...
+                        $event_url_new   = $request->event_url;
+                    }else {
+                        # code...
+                        if ($exist_url->event_url == $data_edit->event_url && $exist_url !== null ) {
+                            # code...
+                            $event_url_new   = $request->event_url;
+                        }elseif($exist_url->event_url !== $data_edit->event_url && $exist_url == null) {
+                            # code...
+                            $event_url_new   = $request->event_url;
+                        }else {
+                            # code...
+                            $event_url_new   = $request->event_url.'-'.$exist_url->count();
+                        }
+                    }
 
-                    // if ($exist_slug == null) {
-                    //     # code...
-                    //     $event_slug_new  = Str::slug($request->event_name);
-                    // }else {
-                    //     # code...
-                    //     if ($exist_slug->event_slug == $data_edit->event_slug && $exist_slug !== null) {
-                    //         # code...
-                    //         $event_slug_new  = Str::slug($request->event_name);
-                    //     }elseif($exist_slug->event_slug !== $data_edit->event_slug && $exist_slug == null) {
-                    //         # code...
-                    //         $event_slug_new  = Str::slug($request->event_name);
-                    //     }else {
-                    //         # code...
-                    //         $event_slug_new  = Str::slug($request->event_name).'-'.$exist_slug->count();
-                    //     }
-                    // }
+                    if ($exist_slug == null) {
+                        # code...
+                        $event_slug_new  = Str::slug($request->event_name);
+                    }else {
+                        # code...
+                        if ($exist_slug->event_slug == $data_edit->event_slug && $exist_slug !== null) {
+                            # code...
+                            $event_slug_new  = Str::slug($request->event_name);
+                        }elseif($exist_slug->event_slug !== $data_edit->event_slug && $exist_slug == null) {
+                            # code...
+                            $event_slug_new  = Str::slug($request->event_name);
+                        }else {
+                            # code...
+                            $event_slug_new  = Str::slug($request->event_name).'-'.$exist_slug->count();
+                        }
+                    }
 
 
-                    // $data = Event::updateOrCreate(
-                    //     [
-                    //         'id'=> $request->id,
-                    //     ],
-                    //     [
+                    $data = Event::updateOrCreate(
+                        [
+                            'id'=> $request->id,
+                        ],
+                        [
                             
-                    //         'event_name'    =>$request->event_name,
-                    //         'event_source'  =>$request->event_source,
-                    //         'event_deadline'=>$request->event_deadline,
-                    //         'event_link'    =>$request->event_link,
-                    //         'event_rank'    =>$request->event_rank,
-                    //         'event_cost'    =>$request->event_cost,
-                    //         'image'         =>$filename,
-                    //         'thumbnail'     =>$thumbnail,
-                    //         'event_desc'    =>$request->event_desc,
-                    //         'event_stat'    =>$request->event_stat,
-                    //         'event_url'     =>$event_url_new,
-                    //         'event_slug'    =>$event_slug_new,
-                    //     ]
-                    // );
+                            'event_name'    =>$request->event_name,
+                            'event_source'  =>$request->event_source,
+                            'event_deadline'=>$request->event_deadline,
+                            'event_link'    =>$request->event_link,
+                            'event_rank'    =>$request->event_rank,
+                            'event_cost'    =>$request->event_cost,
+                            'image'         =>$filename,
+                            'thumbnail'     =>$thumbnail,
+                            'event_desc'    =>$request->event_desc,
+                            'event_stat'    =>$request->event_stat,
+                            'event_url'     =>$event_url_new,
+                            'event_slug'    =>$event_slug_new,
+                        ]
+                    );
 
-                    // if (count($request->kategori) > 0) {
-                    //     # code...
-                    //     $kategori_id    = $request->kategori;
-                    //     $kategori       = Kategori::whereIn('id', $kategori_id)->get();
-                    //     $data->kategori()->sync($kategori);
-                    // }
+                    if (count($request->kategori) > 0) {
+                        # code...
+                        $kategori_id    = $request->kategori;
+                        $kategori       = Kategori::whereIn('id', $kategori_id)->get();
+                        $data->kategori()->sync($kategori);
+                    }
 
                     return response()->json(
                         [
                             'status'=>200,
-                            'message'=>$filename
+                            'message'=>['lomba / event has been updated']
                         ]
                     );
 
@@ -258,7 +258,7 @@ class EventController extends Controller
                     return response()->json(
                         [
                             'status'=>200,
-                            'message'=>$request->event_image
+                            'message'=>['lomba / event has been updated']
                         ]
                     );
                 }
