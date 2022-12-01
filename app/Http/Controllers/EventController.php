@@ -81,7 +81,7 @@ class EventController extends Controller
                 'event_url'     => 'required|',
                 'kategori'      => 'required|',
             ]);
-
+ 
             if ($validator->fails()) {
 
                 return response()->json([
@@ -92,24 +92,22 @@ class EventController extends Controller
             }else {
 
                 if($request->hasFile('event_image')) {
+                    
+                    if ($request->id !== null) {
+                        # code...
+                        $datas = Event::find($request->id);
+                        $images = substr($datas->image, -25);
+                        $thumbnails = substr($datas->thumbnail, -25);
+                        unlink($images);
+                        unlink($thumbnails);
+                    }
 
                     $filename    = time().'.'.$request->event_image->getClientOriginalExtension();
-                    $filename2   = 'small_'.time().'.'.$request->event_image->getClientOriginalExtension();
-                    $filename3   = 'medium_'.time().'.'.$request->event_image->getClientOriginalExtension();
-                    $filename4   = 'large_'.time().'.'.$request->event_image->getClientOriginalExtension();
+                    $request->file('evnt_image')->move('evnt_image/',$filename);
+                    $thumbnail   = $filename;
+                    File::copy(public_path('evnt_image/'.$filename), public_path('image_evnt/'.$thumbnail));
 
-                    $request->file('event_image')->storeAs('public/event_image', $filename);
-                    $request->file('event_image')->storeAs('public/event_image/thumbnail', $filename2);
-                    $request->file('event_image')->storeAs('public/event_image/thumbnail', $filename3);
-                    $request->file('event_image')->storeAs('public/event_image/thumbnail', $filename4);
-
-                    $smallthumbnailpath = public_path('storage/event_image/thumbnail/'.$filename2);
-                    $this->createThumbnail($smallthumbnailpath, 150, 93);
-            
-                    $mediumthumbnailpath = public_path('storage/event_image/thumbnail/'.$filename3);
-                    $this->createThumbnail($mediumthumbnailpath, 300, 185);
-            
-                    $largethumbnailpath = public_path('storage/event_image/thumbnail/'.$filename4);
+                    $largethumbnailpath = public_path('evnt_image/'.$thumbnail);
                     $this->createThumbnail($largethumbnailpath, 550, 340);
                 
                     $exist_url     = Event::where('event_url', $request->event_ur)->first();
@@ -165,8 +163,8 @@ class EventController extends Controller
                             'event_link'    =>$request->event_link,
                             'event_rank'    =>$request->event_rank,
                             'event_cost'    =>$request->event_cost,
-                            'event_image'   =>$filename,
-                            'event_thumb'   =>$filename3,
+                            'image'         =>$filename,
+                            'thumbnail'     =>$thumbnail,
                             'event_desc'    =>$request->event_desc,
                             'event_stat'    =>$request->event_stat,
                             'event_url'     =>$event_url_new,
