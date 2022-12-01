@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="preview" style="max-width: 100%; margin-top: 20px">
                                                 <img style="max-width: 300px" id="inputGroupFile01-preview"
-                                                    src="{{ asset('storage/event_image/thumbnail/'.$data->event_thumb) }}">
+                                                    src="{{ $data->event_thumb }}">
                                             </div>
                                         </div>
                                         <div class="col-md-12 md-3">
