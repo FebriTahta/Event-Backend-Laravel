@@ -23,7 +23,7 @@ class EventController extends Controller
 
             return DataTables::of($data)
             ->addColumn('image', function($data){
-                return '<img src="'.$data->event_thumb.'" width="50px" alt="">';
+                return '<img src="'.$data->thumbnail.'" width="50px" alt="">';
             })
             ->addColumn('opsi', function($data){
                 $actionBtn = ' <a href="/backend-event-edit/'.$data->id.'" class="delete btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>';
