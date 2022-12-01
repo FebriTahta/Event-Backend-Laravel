@@ -135,7 +135,17 @@ class ApiController extends Controller
 
         $total_view = $data->news_views;
         $views_baru = $total_view + 1;
-        $data->update(['news_views'=>$views_baru]);
+
+        $views      = 0;
+        if ($views_baru.length() == 1) {
+            # code...
+            $views  = '0'.$views_baru;
+        }else {
+            # code...
+            $views  = $views_baru;
+        }
+
+        $data->update(['news_views'=>$views]);
         
         if($data)
         {
