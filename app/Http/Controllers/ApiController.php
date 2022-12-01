@@ -109,7 +109,6 @@ class ApiController extends Controller
                     ->join('users', 'news.user_id', 'users.id')
                     ->select('news_title','news_url','news_slug','thumbnail',
                     'news_views','news.id as id','news_stat','news.created_at')
-                    
                     ->limit(4)
                     ->get();
 
