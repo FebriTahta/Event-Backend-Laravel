@@ -105,11 +105,11 @@ class ApiController extends Controller
 
     public function popular_blog()
     {
-        $data = News::where('news_stat', 2)
+        $data = News::where('news_stat', 2)->orderByDesc('news_views')
                     ->join('users', 'news.user_id', 'users.id')
                     ->select('news_title','news_url','news_slug','thumbnail',
                     'news_views','news.id as id','news_stat','news.created_at')
-                    ->orderByDesc('news_views')
+                    
                     ->limit(4)
                     ->get();
 
