@@ -27,4 +27,14 @@ class Event extends Model
     {
         return asset('evnt_image/'.$value);
     }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return \Carbon\Carbon::parse($date)->format('d F Y');
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return \Carbon\Carbon::parse($date)->format('d F Y');
+    }
 }
