@@ -37,4 +37,9 @@ class Event extends Model
     {
         return \Carbon\Carbon::parse($date)->format('d F Y');
     }
+
+    public function getEventDeadlineAttribute($date)
+    {
+        return \Carbon\Carbon::parse($date)->format('d F Y');
+    }
 }
