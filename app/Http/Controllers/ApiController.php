@@ -53,7 +53,8 @@ class ApiController extends Controller
                     ->select('news_title','news_url','news_slug','thumbnail','image',
                     'users.username','news_views','news.id as id','news_stat','news.created_at')
                     ->orderBy('id','desc')
-                    ->paginate(6);
+                    ->limit(6)
+                    ->get();
 
 
         if($data)
