@@ -143,6 +143,36 @@ class ApiController extends Controller
         }
     }
 
+    public function search_blog_in_tag($tag_slug, $search)
+    {
+        $tag  = Tag::where('tag_slug',$tag_slug)->first();
+        $data = News::join('users','news.user_id','users.id')
+                    ->join('tags', function($q) use ($tag_slug) {
+                        $q->on('news.tag_id','=','tags.id')
+                        ->where('tags.tag_slug','=', $tag_slug);
+                    })
+                    ->select('news.id as id','news_slug','news_title','news.created_at','thumbnail','image',
+                    'users.username as username','tags.tag_name','tags.tag_slug','news_desc')
+                    ->where('news_title', 'LIKE', '%' .$search . '%')
+                    ->orWhere('news_desc','LIKE','%' .$search. '%')
+                    ->orWhere('username' ,'LIKE', '%' .$search. '%')
+                    ->orderBy('id','desc')
+                    ->paginate(8);
+        if($data)
+        {
+            // return ApiFormatter::createApi(200, 'success' ,$data);
+            return response()->json([
+                'status' => 200,
+                'message' => 'success',
+                'data' => $data,
+                'tag'  => $tag->tag_name,
+
+            ]);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
     public function popular_blog()
     {
         $data = News::where('news_stat', 2)->orderBy('news_views','DESC')
