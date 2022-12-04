@@ -152,7 +152,7 @@ class ApiController extends Controller
                         ->where('tags.tag_slug','=', $tag_slug);
                     })
                     ->select('news.id as id','news_slug','news_title','news.created_at','thumbnail','image',
-                    'users.username as username','tags.tag_name','tags.tag_slug','news_desc')
+                    'users.username as username','tags.tag_name as tag_name','tags.tag_slug','news_desc')
                     ->where('news_title', 'LIKE', '%' .$search . '%')
                     ->orWhere('news_desc','LIKE','%' .$search. '%')
                     ->orWhere('username' ,'LIKE', '%' .$search. '%')
@@ -160,14 +160,14 @@ class ApiController extends Controller
                     ->paginate(8);
         if($data)
         {
-            // return ApiFormatter::createApi(200, 'success' ,$data);
-            return response()->json([
-                'status' => 200,
-                'message' => 'success',
-                'data' => $data,
-                'tag'  => $tag->tag_name,
+            return ApiFormatter::createApi(200, 'success' ,$data);
+            // return response()->json([
+            //     'status' => 200,
+            //     'message' => 'success',
+            //     'data' => $data,
+            //     'tag'  => $tag->tag_name,
 
-            ]);
+            // ]);
         }else {
             return ApiFormatter::createApi(400, 'failed');
         }
@@ -255,19 +255,19 @@ class ApiController extends Controller
                         ->where('tags.tag_slug','=', $tag_slug);
                     })
                     ->select('news.id as id','news_slug','news_title','news.created_at','thumbnail','image',
-                    'users.username','tags.tag_name','tags.tag_slug')
+                    'users.username as username','tags.tag_name as tag_name','tags.tag_slug')
                     ->orderBy('id','desc')
                     ->paginate(8);
         if($data)
         {
-            // return ApiFormatter::createApi(200, 'success' ,$data);
-            return response()->json([
-                'status' => 200,
-                'message' => 'success',
-                'data' => $data,
-                'tag'  => $tag->tag_name,
+            return ApiFormatter::createApi(200, 'success' ,$data);
+            // return response()->json([
+            //     'status' => 200,
+            //     'message' => 'success',
+            //     'data' => $data,
+            //     'tag'  => $tag->tag_name,
 
-            ]);
+            // ]);
         }else {
             return ApiFormatter::createApi(400, 'failed');
         }
