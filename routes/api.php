@@ -33,4 +33,6 @@ Route::controller(ApiController::class)->group(function(){
 
     Route::get('/tag-blog','daftar_tag_blog');
     Route::get('/daftar-blog/tag/{tag_slug}','daftar_blog_tag');
+
+    Route::get('/newest-blog','newest_blog');
 });

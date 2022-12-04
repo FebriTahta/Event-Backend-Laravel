@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    // event
+    // event / home
     public function daftar_event()
     {
         $data = Event::where('event_stat', 2)
@@ -37,6 +37,25 @@ class ApiController extends Controller
                     ->orWhere('event_desc', 'LIKE', '%' .$search . '%')
                     ->orWhere('event_cost', 'LIKE', '%' .$search . '%')
                     ->get();
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
+    // blog terbaru pada home / event
+    public function newest_blog()
+    {
+        $data = News::where('news_stat', 2)
+                    ->join('users', 'news.user_id', 'users.id')
+                    ->select('news_title','news_url','news_slug','thumbnail','image',
+                    'users.username','news_views','news.id as id','news_stat','news.created_at')
+                    ->orderBy('id','desc')
+                    ->paginate(6);
+
+
         if($data)
         {
             return ApiFormatter::createApi(200, 'success' ,$data);
