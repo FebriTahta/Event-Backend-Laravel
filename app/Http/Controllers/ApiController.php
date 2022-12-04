@@ -160,14 +160,14 @@ class ApiController extends Controller
                     ->paginate(8);
         if($data)
         {
-            return ApiFormatter::createApi(200, 'success' ,$data);
-            // return response()->json([
-            //     'status' => 200,
-            //     'message' => 'success',
-            //     'data' => $data,
-            //     'tag'  => $tag->tag_name,
+            // return ApiFormatter::createApi(200, 'success' ,$data);
+            return response()->json([
+                'status' => 200,
+                'message' => 'success',
+                'data' => $data,
+                'tag'  => $tag->tag_name,
 
-            // ]);
+            ]);
         }else {
             return ApiFormatter::createApi(400, 'failed');
         }
@@ -260,14 +260,14 @@ class ApiController extends Controller
                     ->paginate(8);
         if($data)
         {
-            return ApiFormatter::createApi(200, 'success' ,$data);
-            // return response()->json([
-            //     'status' => 200,
-            //     'message' => 'success',
-            //     'data' => $data,
-            //     'tag'  => $tag->tag_name,
+            // return ApiFormatter::createApi(200, 'success' ,$data);
+            return response()->json([
+                'status' => 200,
+                'message' => 'success',
+                'data' => $data,
+                'tag'  => $tag->tag_name,
 
-            // ]);
+            ]);
         }else {
             return ApiFormatter::createApi(400, 'failed');
         }
