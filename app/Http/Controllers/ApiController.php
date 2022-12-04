@@ -123,6 +123,26 @@ class ApiController extends Controller
         }
     }
 
+    public function search_blog($search)
+    {
+        $data = News::where('news_stat', 2)
+                    ->join('users', 'news.user_id', 'users.id')
+                    ->select('news_title','news_url','news_slug','thumbnail','image',
+                    'users.username as username','news_views','news.id as id','news_stat','news.created_at','news_desc')
+                    ->where('news_title', 'LIKE', '%' .$search . '%')
+                    ->orWhere('news_views', 'LIKE' , '%' .$search. '%')
+                    ->orWhere('news_desc','LIKE','%' .$search. '%')
+                    ->orWhere('username' ,'LIKE', '%' .$search. '%')
+                    ->orderBy('id','desc')
+                    ->paginate(8);
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
     public function popular_blog()
     {
         $data = News::where('news_stat', 2)->orderBy('news_views','DESC')
